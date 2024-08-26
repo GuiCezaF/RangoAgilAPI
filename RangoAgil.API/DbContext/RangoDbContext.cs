@@ -10,32 +10,31 @@ public class RangoDbContext(DbContextOptions<RangoDbContext> options) : Microsof
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
         _ = modelBuilder.Entity<Ingrediente>().HasData(
-        new { Id = 1, Name = "Carne de Vaca" },
-        new { Id = 2, Name = "Cebola" },
-        new { Id = 3, Name = "Cerveja Escura" },
-        new { Id = 4, Name = "Fatia de Pão Integral" },
-        new { Id = 5, Name = "Mostarda" },
-        new { Id = 6, Name = "Chicória" },
-        new { Id = 7, Name = "Maionese" },
-        new { Id = 8, Name = "Vários Temperos" },
-        new { Id = 9, Name = "Mexilhões" },
-        new { Id = 10, Name = "Aipo" },
-        new { Id = 11, Name = "Batatas Fritas" },
-        new { Id = 12, Name = "Tomate" },
-        new { Id = 13, Name = "Extrato de Tomate" },
-        new { Id = 14, Name = "Folha de Louro" },
-        new { Id = 15, Name = "Cenoura" },
-        new { Id = 16, Name = "Alho" },
-        new { Id = 17, Name = "Vinho Tinto" },
-        new { Id = 18, Name = "Leite de Coco" },
-        new { Id = 19, Name = "Gengibre" },
-        new { Id = 20, Name = "Pimenta Malagueta" },
-        new { Id = 21, Name = "Tamarindo" },
-        new { Id = 22, Name = "Peixe Firme" },
-        new { Id = 23, Name = "Pasta de Gengibre e Alho" },
-        new { Id = 24, Name = "Garam Masala" });
+            new { Id = 1, Name = "Carne de Vaca" },
+            new { Id = 2, Name = "Cebola" },
+            new { Id = 3, Name = "Cerveja Escura" },
+            new { Id = 4, Name = "Fatia de Pão Integral" },
+            new { Id = 5, Name = "Mostarda" },
+            new { Id = 6, Name = "Chicória" },
+            new { Id = 7, Name = "Maionese" },
+            new { Id = 8, Name = "Vários Temperos" },
+            new { Id = 9, Name = "Mexilhões" },
+            new { Id = 10, Name = "Aipo" },
+            new { Id = 11, Name = "Batatas Fritas" },
+            new { Id = 12, Name = "Tomate" },
+            new { Id = 13, Name = "Extrato de Tomate" },
+            new { Id = 14, Name = "Folha de Louro" },
+            new { Id = 15, Name = "Cenoura" },
+            new { Id = 16, Name = "Alho" },
+            new { Id = 17, Name = "Vinho Tinto" },
+            new { Id = 18, Name = "Leite de Coco" },
+            new { Id = 19, Name = "Gengibre" },
+            new { Id = 20, Name = "Pimenta Malagueta" },
+            new { Id = 21, Name = "Tamarindo" },
+            new { Id = 22, Name = "Peixe Firme" },
+            new { Id = 23, Name = "Pasta de Gengibre e Alho" },
+            new { Id = 24, Name = "Garam Masala" });
 
         _ = modelBuilder.Entity<Rango>().HasData(
             new { Id = 1, Name = "Ensopado Flamengo de Carne de Vaca com Chicória" },
@@ -92,8 +91,7 @@ public class RangoDbContext(DbContextOptions<RangoDbContext> options) : Microsof
                 new { RangosId = 5, IngredientesId = 20 },
                 new { RangosId = 5, IngredientesId = 13 }
             ));
-        
-        base.OnModelCreating(modelBuilder);
 
+        base.OnModelCreating(modelBuilder);
     }
 }
