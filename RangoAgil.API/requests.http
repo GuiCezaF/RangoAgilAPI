@@ -1,0 +1,4 @@
+### GET Routes
+GET http://localhost:5152/rango/1/ingredientes
+
+###
