@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using RangoAgil.API.DbContext;
+using RangoAgil.API.Entities;
 using RangoAgil.API.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -57,5 +58,33 @@ app.MapGet("/rango/{rangoId:int}/ingredientes", async (
         .Include(rango => rango.Ingredientes)
         .FirstOrDefaultAsync(rango => rango.Id == rangoId))?.Ingredientes);
 });
+
+app.MapPost("/rango", async Task<IResult>(
+    RangoDbContext rangoDbContext,
+    IMapper mapper,
+    [FromBody] RangoParaCriacaoDTO rangoParaCriacaoDto) =>
+{
+    if (rangoParaCriacaoDto == null)
+    {
+        return Results.BadRequest("O corpo da requisição não pode estar vazio.");
+    }
+
+    try
+    {
+        var rangoEntity = mapper.Map<Rango>(rangoParaCriacaoDto);
+        rangoDbContext.Add(rangoEntity);
+        await rangoDbContext.SaveChangesAsync();
+    
+        var rangoToReturn = mapper.Map<RangoDTO>(rangoEntity);
+        return Results.Ok(rangoToReturn);
+    }
+    catch (Exception ex)
+    {
+        return Results.BadRequest($"Erro ao criar o rango: {ex.Message}");
+    }
+});
+
+
+
 
 app.Run();
