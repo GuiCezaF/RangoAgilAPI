@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RangoDbContext>(
     o => o.UseSqlite(
         builder.Configuration["ConnectionStrings:RangoDbConStr"]
-    )
+    )               
 );
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -45,8 +45,8 @@ app.MapGet("/rango/{id:int}",
         if (rango == null) return TypedResults.NotFound();
 
         var results = mapper.Map<RangoDTO>(rango);
-        return TypedResults.Ok(results);
-    });
+        return TypedResults.Ok(results); 
+}).WithName("GetRango");
 
 
 app.MapGet("/rango/{rangoId:int}/ingredientes", async (
@@ -76,7 +76,8 @@ app.MapPost("/rango", async Task<IResult>(
         await rangoDbContext.SaveChangesAsync();
     
         var rangoToReturn = mapper.Map<RangoDTO>(rangoEntity);
-        return Results.Ok(rangoToReturn);
+
+        return Results.CreatedAtRoute("GetRango", new { id = rangoEntity.Id }, rangoToReturn);
     }
     catch (Exception ex)
     {
